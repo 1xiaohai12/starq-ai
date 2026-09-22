@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>星启AI · ChatGPT Plus / Pro 官方代订阅服务</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%2310a37f'/%3E%3Ctext x='16' y='22' font-family='Arial' font-size='18' font-weight='bold' fill='white' text-anchor='middle'%3ES%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="https://miaoda.feishu.cn/fonts/css2?family=Noto+Sans+SC:wght@300;400;500;600;700&display=swap">
+<style>
+:root{
+  --bg:#0b0d0c;
+  --bg-2:#111413;
+  --card:#161a19;
+  --card-2:#1c2120;
+  --line:#262c2a;
+  --line-2:#333b39;
+  --green:#10a37f;
+  --green-2:#19c37d;
+  --green-dim:#0d8a6b;
+  --text:#f2f5f4;
+  --text-2:#9aa5a2;
+  --text-3:#6b7673;
+  --warn:#e5b567;
+  --radius:14px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Noto Sans SC',-apple-system,BlinkMacSystemFont,'PingFang SC','Microsoft YaHei',sans-serif;
+  background:var(--bg);color:var(--text);line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+}
+a{color:inherit;text-decoration:none}
+button{font-family:inherit;cursor:pointer;border:none;background:none;color:inherit}
+input,select{font-family:inherit}
+.container{max-width:1200px;margin:0 auto;padding:0 24px}
+/* ===== Nav ===== */
+.nav{
+  position:sticky;top:0;z-index:100;
+  background:rgba(11,13,12,.85);backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--line);
+}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;height:64px}
+.logo{display:flex;align-items:center;gap:10px;font-weight:700;font-size:18px}
+.logo-mark{
+  width:32px;height:32px;border-radius:8px;background:linear-gradient(135deg,var(--green),var(--green-2));
+  display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:800;color:#0b0d0c;
+}
+.logo span.tag{font-size:11px;color:var(--text-3);font-weight:400;margin-left:4px;padding:2px 8px;border:1px solid var(--line-2);border-radius:10px}
+.nav-links{display:flex;gap:6px;align-items:center}
+.nav-link{
+  padding:8px 14px;border-radius:8px;font-size:14px;color:var(--text-2);
+  transition:all .15s;cursor:pointer;
+}
+.nav-link:hover{color:var(--text);background:var(--card)}
+.nav-link.active{color:var(--green-2);background:rgba(16,163,127,.1)}
+.nav-cta{
+  padding:9px 18px;border-radius:8px;background:var(--green);color:#fff;font-size:14px;font-weight:500;
+  transition:all .15s;
+}
+.nav-cta:hover{background:var(--green-2)}
+.nav-ghost{
+  padding:9px 16px;border-radius:8px;border:1px solid var(--line-2);font-size:14px;color:var(--text-2);margin-right:8px;
+}
+.nav-ghost:hover{color:var(--text);border-color:var(--text-3)}
+.menu-btn{display:none;background:none;border:none;color:var(--text);font-size:24px;cursor:pointer}
+/* ===== Hero ===== */
+.hero{
+  position:relative;padding:90px 0 70px;overflow:hidden;
+}
+.hero::before{
+  content:'';position:absolute;top:-200px;left:50%;transform:translateX(-50%);
+  width:900px;height:600px;background:radial-gradient(circle,rgba(16,163,127,.18) 0%,transparent 60%);
+  pointer-events:none;
+}
+.hero-inner{position:relative;max-width:780px;margin:0 auto;text-align:center}
+.hero-badge{
+  display:inline-flex;align-items:center;gap:8px;padding:6px 14px;border-radius:20px;
+  background:rgba(16,163,127,.1);border:1px solid rgba(16,163,127,.3);
+  font-size:13px;color:var(--green-2);margin-bottom:24px;
+}
+.hero-badge .dot{width:6px;height:6px;border-radius:50%;background:var(--green-2);animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+.hero h1{
+  font-size:52px;line-height:1.15;font-weight:700;letter-spacing:-1px;
+  margin-bottom:20px;
+}
+.hero h1 .g{color:var(--green-2)}
+.hero p.lead{font-size:18px;color:var(--text-2);max-width:600px;margin:0 auto 36px;line-height:1.7}
+.hero-actions{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+.btn{
+  padding:13px 28px;border-radius:10px;font-size:15px;font-weight:500;transition:all .15s;cursor:pointer;
+  display:inline-flex;align-items:center;gap:8px;
+}
+.btn-primary{background:var(--green);color:#fff}
+.btn-primary:hover{background:var(--green-2);transform:translateY(-1px)}
+.btn-outline{border:1px solid var(--line-2);color:var(--text)}
+.btn-outline:hover{border-color:var(--text-3);background:var(--card)}
+/* ===== Stats ===== */
+.stats{
+  display:grid;grid-template-columns:repeat(4,1fr);gap:1px;
+  background:var(--line);border:1px solid var(--line);border-radius:var(--radius);
+  overflow:hidden;margin:40px 0 0;
+}
+.stat{background:var(--bg-2);padding:24px;text-align:center}
+.stat-num{font-size:30px;font-weight:700;color:var(--green-2);margin-bottom:4px}
+.stat-label{font-size:13px;color:var(--text-3)}
+/* ===== Section ===== */
+.section{padding:80px 0}
+.section-head{text-align:center;max-width:640px;margin:0 auto 50px}
+.section-tag{
+  display:inline-block;font-size:12px;letter-spacing:2px;text-transform:uppercase;
+  color:var(--green-2);margin-bottom:12px;font-weight:500;
+}
+.section-title{font-size:36px;font-weight:700;letter-spacing:-.5px;margin-bottom:14px}
+.section-sub{font-size:16px;color:var(--text-2)}
+/* ===== Pricing ===== */
+.pricing-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;align-items:stretch}
+.price-card{
+  background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
+  padding:32px;position:relative;display:flex;flex-direction:column;
+  transition:all .2s;
+}
+.price-card:hover{border-color:var(--line-2);transform:translateY(-3px)}
+.price-card.featured{
+  background:linear-gradient(180deg,rgba(16,163,127,.08),var(--card));
+  border-color:var(--green);
+}
+.popular-tag{
+  position:absolute;top:-12px;left:50%;transform:translateX(-50%);
+  background:var(--green);color:#fff;font-size:12px;font-weight:500;
+  padding:4px 14px;border-radius:12px;white-space:nowrap;
+}
+.plan-name{font-size:18px;font-weight:600;margin-bottom:6px}
+.plan-desc{font-size:13px;color:var(--text-3);margin-bottom:20px}
+.plan-price{display:flex;align-items:baseline;gap:6px;margin-bottom:4px}
+.plan-price .amount{font-size:40px;font-weight:700;letter-spacing:-1px}
+.plan-price .period{font-size:14px;color:var(--text-3)}
+.plan-original{font-size:13px;color:var(--text-3);text-decoration:line-through;margin-bottom:24px}
+.plan-features{list-style:none;margin-bottom:28px;flex:1}
+.plan-features li{
+  padding:9px 0;font-size:14px;color:var(--text-2);
+  display:flex;align-items:flex-start;gap:10px;border-bottom:1px dashed var(--line);
+}
+.plan-features li:last-child{border-bottom:none}
+.plan-features .check{color:var(--green-2);flex-shrink:0;margin-top:2px}
+.plan-btn{
+  width:100%;padding:13px;border-radius:10px;font-size:15px;font-weight:500;
+  background:var(--card-2);color:var(--text);border:1px solid var(--line-2);
+  transition:all .15s;text-align:center;
+}
+.plan-btn:hover{border-color:var(--green);color:var(--green-2)}
+.price-card.featured .plan-btn{background:var(--green);color:#fff;border-color:var(--green)}
+.price-card.featured .plan-btn:hover{background:var(--green-2)}
+/* ===== Flow ===== */
+.flow-wrap{background:var(--bg-2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.flow-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+.flow-step{
+  padding:28px;background:var(--card);border-radius:var(--radius);border:1px solid var(--line);
+  position:relative;
+}
+.flow-num{
+  width:40px;height:40px;border-radius:10px;background:rgba(16,163,127,.12);
+  color:var(--green-2);display:flex;align-items:center;justify-content:center;
+  font-weight:700;font-size:16px;margin-bottom:16px;
+}
+.flow-step h4{font-size:16px;margin-bottom:8px}
+.flow-step p{font-size:13px;color:var(--text-2);line-height:1.6}
+/* ===== Trust / Guarantees ===== */
+.guarantee-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.guarantee{
+  padding:26px;background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
+}
+.guarantee-icon{
+  width:44px;height:44px;border-radius:10px;background:rgba(16,163,127,.1);
+  display:flex;align-items:center;justify-content:center;margin-bottom:16px;color:var(--green-2);
+}
+.guarantee h4{font-size:16px;margin-bottom:8px}
+.guarantee p{font-size:13px;color:var(--text-2);line-height:1.7}
+/* ===== Order query ===== */
+.order-panel{
+  max-width:720px;margin:0 auto;background:var(--card);
+  border:1px solid var(--line);border-radius:var(--radius);padding:36px;
+}
+.order-form{display:grid;grid-template-columns:1fr 1fr auto;gap:12px;margin-bottom:24px}
+.order-form input{
+  padding:12px 14px;background:var(--bg-2);border:1px solid var(--line-2);
+  border-radius:8px;color:var(--text);font-size:14px;outline:none;
+}
+.order-form input:focus{border-color:var(--green)}
+.order-form button{
+  padding:12px 24px;background:var(--green);color:#fff;border-radius:8px;font-weight:500;
+}
+.order-form button:hover{background:var(--green-2)}
+.order-result{
+  display:none;padding:20px;background:var(--bg-2);border-radius:10px;
+  border-left:3px solid var(--green);
+}
+.order-result.show{display:block}
+.order-result h5{font-size:14px;color:var(--text-3);margin-bottom:12px;font-weight:400}
+.order-status{display:flex;align-items:center;gap:10px;font-size:16px;margin-bottom:8px}
+.status-badge{
+  padding:3px 10px;border-radius:12px;font-size:12px;font-weight:500;
+  background:rgba(16,163,127,.15);color:var(--green-2);
+}
+.order-meta{font-size:13px;color:var(--text-2);line-height:1.8}
+/* ===== FAQ ===== */
+.faq-list{max-width:800px;margin:0 auto}
+.faq-item{
+  border:1px solid var(--line);border-radius:10px;margin-bottom:10px;
+  background:var(--card);overflow:hidden;
+}
+.faq-q{
+  width:100%;padding:18px 22px;text-align:left;font-size:15px;font-weight:500;
+  display:flex;justify-content:space-between;align-items:center;cursor:pointer;
+  color:var(--text);
+}
+.faq-q .arrow{transition:transform .2s;color:var(--text-3);font-size:14px}
+.faq-item.open .arrow{transform:rotate(180deg)}
+.faq-a{
+  max-height:0;overflow:hidden;transition:max-height .25s ease;
+  padding:0 22px;font-size:14px;color:var(--text-2);line-height:1.7;
+}
+.faq-item.open .faq-a{max-height:300px;padding:0 22px 18px}
+/* ===== Footer ===== */
+.footer{
+  border-top:1px solid var(--line);padding:40px 0;margin-top:40px;
+  background:var(--bg-2);
+}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px;margin-bottom:30px}
+.footer-brand p{font-size:13px;color:var(--text-3);margin-top:10px;max-width:280px;line-height:1.7}
+.footer h5{font-size:14px;margin-bottom:14px;color:var(--text)}
+.footer ul{list-style:none}
+.footer ul li{margin-bottom:8px}
+.footer ul li a{font-size:13px;color:var(--text-3);transition:color .15s;cursor:pointer}
+.footer ul li a:hover{color:var(--green-2)}
+.footer-bottom{
+  padding-top:24px;border-top:1px solid var(--line);
+  display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;
+  font-size:12px;color:var(--text-3);
+}
+/* ===== Toast ===== */
+.toast{
+  position:fixed;bottom:30px;left:50%;transform:translateX(-50%) translateY(100px);
+  background:var(--card-2);border:1px solid var(--line-2);color:var(--text);
+  padding:12px 22px;border-radius:10px;font-size:14px;z-index:999;
+  transition:transform .25s;box-shadow:0 8px 30px rgba(0,0,0,.4);
+}
+.toast.show{transform:translateX(-50%) translateY(0)}
+/* ===== Views ===== */
+.view{display:none}
+.view.active{display:block}
+/* ===== Responsive ===== */
+@media(max-width:900px){
+  .nav-links{display:none}
+  .menu-btn{display:block}
+  .hero h1{font-size:36px}
+  .stats{grid-template-columns:repeat(2,1fr)}
+  .pricing-grid{grid-template-columns:1fr}
+  .flow-grid{grid-template-columns:repeat(2,1fr)}
+  .guarantee-grid{grid-template-columns:1fr}
+  .order-form{grid-template-columns:1fr}
+  .footer-grid{grid-template-columns:1fr 1fr}
+  .section-title{font-size:28px}
+}
+@media(max-width:600px){
+  .flow-grid{grid-template-columns:1fr}
+  .stats{grid-template-columns:repeat(2,1fr)}
+  .hero{padding:60px 0 50px}
+  .hero h1{font-size:30px}
+  .footer-grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+<!-- ===== Nav ===== -->
+<nav class="nav">
+  <div class="container nav-inner">
+    <a class="logo" href="#/home">
+      <div class="logo-mark">S</div>
+      <span>星启AI</span>
+      <span class="tag">AI代订阅</span>
+    </a>
+    <div class="nav-links">
+      <a class="nav-link" data-route="home" href="#/home">首页</a>
+      <a class="nav-link" data-route="pricing" href="#/pricing">套餐价格</a>
+      <a class="nav-link" data-route="flow" href="#/flow">充值流程</a>
+      <a class="nav-link" data-route="order" href="#/order">订单查询</a>
+      <a class="nav-link" data-route="faq" href="#/faq">常见问题</a>
+    </div>
+    <div style="display:flex;align-items:center">
+      <button class="nav-ghost" onclick="showToast('客服微信：starq‑ai（工作时间 10:00-22:00）')">联系客服</button>
+      <button class="nav-cta" onclick="location.hash='#/pricing'">立即订购</button>
+      <button class="menu-btn" onclick="showToast('移动端菜单：请直接滑动浏览各板块')">☰</button>
+    </div>
+  </div>
+</nav>
+<!-- ===== View: Home ===== -->
+<div class="view active" id="view-home">
+  <!-- Hero -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero-inner">
+        <div class="hero-badge"><span class="dot"></span> 已服务 12,000+ 用户 · 全程无需账号密码</div>
+        <h1>ChatGPT <span class="g">Plus / Pro</span><br>星启AI · 安全代订阅 · 稳定到账</h1>
+        <p class="lead">支持微信 / 支付宝付款，自动匹配官方渠道订阅。全程无需提供账号密码，订单可查，失败全额退款。</p>
+        <div class="hero-actions">
+          <button class="btn btn-primary" onclick="location.hash='#/pricing'">查看套餐价格</button>
+          <button class="btn btn-outline" onclick="location.hash='#/flow'">了解充值流程</button>
+        </div>
+        <div class="stats">
+          <div class="stat"><div class="stat-num">12,000+</div><div class="stat-label">累计服务用户</div></div>
+          <div class="stat"><div class="stat-num">99.2%</div><div class="stat-label">到账成功率</div></div>
+          <div class="stat"><div class="stat-num">30min</div><div class="stat-label">平均到账时长</div></div>
+          <div class="stat"><div class="stat-num">100%</div><div class="stat-label">失败全额退款</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- Pricing preview -->
+  <section class="section">
+    <div class="container">
+      <div class="section-head">
+        <div class="section-tag">PLANS</div>
+        <h2 class="section-title">选择适合你的套餐</h2>
+        <p class="section-sub">所有套餐均为官方渠道订阅，不共享账号，不修改密码</p>
+      </div>
+      <div class="pricing-grid">
+        <div class="price-card">
+          <div class="plan-name">ChatGPT Plus</div>
+          <div class="plan-desc">个人用户首选 · 日常智能对话</div>
+          <div class="plan-price"><span class="amount">¥168</span><span class="period">/月</span></div>
+          <div class="plan-original">官方原价 $20 /月</div>
+          <ul class="plan-features">
+            <li><span class="check">✓</span> GPT-4o 无限使用</li>
+            <li><span class="check">✓</span> GPT-4o mini 无限使用</li>
+            <li><span class="check">✓</span> DALL·E 图像生成</li>
+            <li><span class="check">✓</span> 高级数据分析</li>
+            <li><span class="check">✓</span> 优先响应 · 无排队</li>
+          </ul>
+          <button class="plan-btn" onclick="location.hash='#/pricing'">选择 Plus</button>
+        </div>
+        <div class="price-card featured">
+          <div class="popular-tag">最受欢迎</div>
+          <div class="plan-name">ChatGPT Pro</div>
+          <div class="plan-desc">重度用户 / 专业开发者</div>
+          <div class="plan-price"><span class="amount">¥899</span><span class="period">/月</span></div>
+          <div class="plan-original">官方原价 $200 /月</div>
+          <ul class="plan-features">
+            <li><span class="check">✓</span> 包含 Plus 全部权益</li>
+            <li><span class="check">✓</span> o1 / o3 高用量额度</li>
+            <li><span class="check">✓</span> GPT-4o 最高 5 倍用量</li>
+            <li><span class="check">✓</span> 高级语音 · 高级视觉</li>
+            <li><span class="check">✓</span> 优先客服通道</li>
+          </ul>
+          <button class="plan-btn" onclick="location.hash='#/pricing'">选择 Pro</button>
+        </div>
+        <div class="price-card">
+          <div class="plan-name">Codex 订阅</div>
+          <div class="plan-desc">编程助手 · 开发者专属</div>
+          <div class="plan-price"><span class="amount">¥199</span><span class="period">/月</span></div>
+          <div class="plan-original">官方原价 $20 /月</div>
+          <ul class="plan-features">
+            <li><span class="check">✓</span> Codex CLI 完整使用</li>
+            <li><span class="check">✓</span> 代码解释器</li>
+            <li><span class="check">✓</span> GitHub 仓库集成</li>
+            <li><span class="check">✓</span> 自动 PR 提交</li>
+            <li><span class="check">✓</span> 私有代码安全沙箱</li>
+          </ul>
+          <button class="plan-btn" onclick="location.hash='#/pricing'">选择 Codex</button>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- Guarantees -->
+  <section class="section" style="padding-top:0">
+    <div class="container">
+      <div class="section-head">
+        <div class="section-tag">TRUST</div>
+        <h2 class="section-title">三重保障 · 安心下单</h2>
+      </div>
+      <div class="guarantee-grid">
+        <div class="guarantee">
+          <div class="guarantee-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" /></svg>
+          </div>
+          <h4>无需密码</h4>
+          <p>充值过程仅需你的账号邮箱，全程不索要密码、不接收邮箱验证码、不索取二次验证信息。</p>
+        </div>
+        <div class="guarantee">
+          <div class="guarantee-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8" /><path d="M3 3v5h5" /></svg>
+          </div>
+          <h4>失败退款</h4>
+          <p>因任何原因充值未成功，全额原路退回。订单全程可查，不设任何隐形扣费条款。</p>
+        </div>
+        <div class="guarantee">
+          <div class="guarantee-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10" /><path d="M12 6v6l4 2" /></svg>
+          </div>
+          <h4>极速到账</h4>
+          <p>支付完成后自动进入充值队列，平均 30 分钟内到账，高峰期最长不超过 4 小时。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+<!-- ===== View: Pricing ===== -->
+<div class="view" id="view-pricing">
+  <section class="section" style="padding-top:60px">
+    <div class="container">
+      <div class="section-head">
+        <div class="section-tag">PRICING</div>
+        <h2 class="section-title">套餐价格对比</h2>
+        <p class="section-sub">所有价格均为人民币含税价，支持微信 / 支付宝</p>
+      </div>
+      <div class="pricing-grid">
+        <div class="price-card">
+          <div class="plan-name">ChatGPT Plus</div>
+          <div class="plan-desc">个人用户首选 · 日常智能对话</div>
+          <div class="plan-price"><span class="amount">¥168</span><span class="period">/月</span></div>
+          <div class="plan-original">官方原价 $20 /月 · 约 ¥145</div>
+          <ul class="plan-features">
+            <li><span class="check">✓</span> GPT-4o 无限对话</li>
+            <li><span class="check">✓</span> GPT-4o mini 无限使用</li>
+            <li><span class="check">✓</span> DALL·E 图像生成</li>
+            <li><span class="check">✓</span> 高级数据分析</li>
+            <li><span class="check">✓</span> 网页浏览 · 联网搜索</li>
+            <li><span class="check">✓</span> 自定义 GPTs 创建</li>
+            <li><span class="check">✓</span> 优先响应 · 无排队等待</li>
+          </ul>
+          <button class="plan-btn" onclick="showToast('已选择 Plus，请填写订单信息完成支付')">立即订购 Plus</button>
+        </div>
+        <div class="price-card featured">
+          <div class="popular-tag">最受欢迎</div>
+          <div class="plan-name">ChatGPT Pro</div>
+          <div class="plan-desc">重度用户 / 专业开发者</div>
+          <div class="plan-price"><span class="amount">¥899</span><span class="period">/月</span></div>
+          <div class="plan-original">官方原价 $200 /月 · 约 ¥1450</div>
+          <ul class="plan-features">
+            <li><span class="check">✓</span> 包含 Plus 全部权益</li>
+            <li><span class="check">✓</span> o1 / o3 模型高用量额度</li>
+            <li><span class="check">✓</span> GPT-4o 最高 5 倍消息量</li>
+            <li><span class="check">✓</span> 高级语音对话</li>
+            <li><span class="check">✓</span> 高级视觉识别</li>
+            <li><span class="check">✓</span> 高级数据分析（超大文件）</li>
+            <li><span class="check">✓</span> 优先客服通道 · 专属支持</li>
+          </ul>
+          <button class="plan-btn" onclick="showToast('已选择 Pro，请填写订单信息完成支付')">立即订购 Pro</button>
+        </div>
+        <div class="price-card">
+          <div class="plan-name">Codex 订阅</div>
+          <div class="plan-desc">编程助手 · 开发者专属</div>
+          <div class="plan-price"><span class="amount">¥199</span><span class="period">/月</span></div>
+          <div class="plan-original">官方原价 $20 /月</div>
+          <ul class="plan-features">
+            <li><span class="check">✓</span> Codex CLI 完整使用</li>
+            <li><span class="check">✓</span> 代码解释器（Code Interpreter）</li>
+            <li><span class="check">✓</span> GitHub 仓库自动集成</li>
+            <li><span class="check">✓</span> 自动生成 PR 与代码审查</li>
+            <li><span class="check">✓</span> 私有代码安全沙箱</li>
+            <li><span class="check">✓</span> 多文件上下文理解</li>
+            <li><span class="check">✓</span> 支持 Python / JS / Go 等主流语言</li>
+          </ul>
+          <button class="plan-btn" onclick="showToast('已选择 Codex，请填写订单信息完成支付')">立即订购 Codex</button>
+        </div>
+      </div>
+      <p style="text-align:center;margin-top:30px;font-size:13px;color:var(--text-3)">
+        注：会员时长不支持叠加，建议在当前会员到期后再下单。Team / 企业组织账号请先联系客服确认。
+      </p>
+    </div>
+  </section>
+</div>
+<!-- ===== View: Flow ===== -->
+<div class="view" id="view-flow">
+  <section class="section" style="padding-top:60px">
+    <div class="container">
+      <div class="section-head">
+        <div class="section-tag">HOW IT WORKS</div>
+        <h2 class="section-title">四步完成充值</h2>
+        <p class="section-sub">整个过程约 2 分钟，到账后会通过邮件通知你</p>
+      </div>
+      <div class="flow-grid">
+        <div class="flow-step">
+          <div class="flow-num">01</div>
+          <h4>选择套餐</h4>
+          <p>在套餐页选择 Plus / Pro / Codex，核对价格与权益。个人账号直接下单，Team 账号请先咨询客服。</p>
+        </div>
+        <div class="flow-step">
+          <div class="flow-num">02</div>
+          <h4>填写邮箱</h4>
+          <p>填写订单通知邮箱和你的 ChatGPT 注册邮箱，用于接收订单状态和到账通知。</p>
+        </div>
+        <div class="flow-step">
+          <div class="flow-num">03</div>
+          <h4>完成支付</h4>
+          <p>通过微信或支付宝完成付款，支付成功后自动进入充值队列，无需等待客服人工处理。</p>
+        </div>
+        <div class="flow-step">
+          <div class="flow-num">04</div>
+          <h4>到账通知</h4>
+          <p>充值完成后邮件通知。回到 ChatGPT 账号刷新页面，即可看到会员状态已更新。</p>
+        </div>
+      </div>
+      <div style="margin-top:60px;background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:36px">
+        <h3 style="font-size:18px;margin-bottom:18px">下单注意事项</h3>
+        <ul style="list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:12px 30px">
+          <li style="font-size:14px;color:var(--text-2);display:flex;gap:10px"><span style="color:var(--green-2)">•</span> 会员时长不支持叠加，请到期后再充值</li>
+          <li style="font-size:14px;color:var(--text-2);display:flex;gap:10px"><span style="color:var(--green-2)">•</span> 优先使用个人账号，不建议共享账号下单</li>
+          <li style="font-size:14px;color:var(--text-2);display:flex;gap:10px"><span style="color:var(--green-2)">•</span> 切勿向任何人泄露密码与邮箱验证码</li>
+          <li style="font-size:14px;color:var(--text-2);display:flex;gap:10px"><span style="color:var(--green-2)">•</span> Team / 企业组织账号需先咨询客服</li>
+          <li style="font-size:14px;color:var(--text-2);display:flex;gap:10px"><span style="color:var(--green-2)">•</span> 付款后请保留订单号与支付截图</li>
+          <li style="font-size:14px;color:var(--text-2);display:flex;gap:10px"><span style="color:var(--green-2)">•</span> 订单异常提供订单号可加快处理</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+</div>
+<!-- ===== View: Order ===== -->
+<div class="view" id="view-order">
+  <section class="section" style="padding-top:60px">
+    <div class="container">
+      <div class="section-head">
+        <div class="section-tag">TRACK ORDER</div>
+        <h2 class="section-title">订单查询</h2>
+        <p class="section-sub">输入订单号和下单邮箱，实时查看充值进度</p>
+      </div>
+      <div class="order-panel">
+        <div class="order-form">
+          <input type="text" id="orderNo" placeholder="订单号（如 XQ20260922001）">
+          <input type="email" id="orderEmail" placeholder="下单时填写的邮箱">
+          <button onclick="queryOrder()">查询</button>
+        </div>
+        <div class="order-result" id="orderResult">
+          <h5>订单详情</h5>
+          <div class="order-status">
+            订单状态：<span class="status-badge">充值完成</span>
+          </div>
+          <div class="order-meta">
+            订单号：XQ20260922001<br>
+            套餐：ChatGPT Plus（月付）<br>
+            下单时间：2026-09-22 14:32<br>
+            到账时间：2026-09-22 15:08<br>
+            金额：¥168.00
+          </div>
+        </div>
+        <p style="margin-top:18px;font-size:12px;color:var(--text-3);text-align:center">
+          演示数据 · 实际订单以你的订单号查询结果为准
+        </p>
+      </div>
+    </div>
+  </section>
+</div>
+<!-- ===== View: FAQ ===== -->
+<div class="view" id="view-faq">
+  <section class="section" style="padding-top:60px">
+    <div class="container">
+      <div class="section-head">
+        <div class="section-tag">FAQ</div>
+        <h2 class="section-title">常见问题</h2>
+      </div>
+      <div class="faq-list">
+        <div class="faq-item">
+          <button class="faq-q">充值需要提供账号密码吗？<span class="arrow">▼</span></button>
+          <div class="faq-a">不需要。全程仅需提供你的 ChatGPT 注册邮箱，我们不会索要密码、邮箱验证码或二次验证信息。任何要求你提供密码的均为假冒客服，请立即停止并联系官方客服核实。</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q">一般多久能到账？<span class="arrow">▼</span></button>
+          <div class="faq-a">支付完成后自动进入充值队列，平均 30 分钟内到账。高峰期（晚间或活动期间）最长不超过 4 小时。到账后系统会发送邮件通知，你也可以随时在订单查询页查看进度。</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q">充值失败怎么办？<span class="arrow">▼</span></button>
+          <div class="faq-a">若因系统原因导致充值未成功，我们将全额原路退款，无需你操作。若因账号本身问题（如地区限制、账号被封等）导致失败，客服会先联系你确认，再协商退款或替代方案。</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q">会员时长可以叠加吗？<span class="arrow">▼</span></button>
+          <div class="faq-a">不支持叠加。建议在当前会员到期后再下单，短时间内重复下单可能导致订单异常或时长无法正确累加。如确需续费，请在到期前 24 小时内下单。</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q">Team / 企业账号可以充值吗？<span class="arrow">▼</span></button>
+          <div class="faq-a">Team 和企业组织账号需要先联系客服确认。这类账号的充值流程与个人账号不同，需要管理员配合操作，建议先通过微信或 QQ 客服沟通后再下单。</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q">支持哪些支付方式？<span class="arrow">▼</span></button>
+          <div class="faq-a">目前支持微信支付和支付宝两种方式，均通过官方聚合支付通道完成，交易安全可追溯。暂不支持银行卡、信用卡或其他数字货币支付。</div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+<!-- ===== Footer ===== -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="logo"><div class="logo-mark">S</div><span>星启AI</span></div>
+        <p>专注 ChatGPT Plus / Pro / Codex AI代订阅服务，安全、快速、可信赖。</p>
+      </div>
+      <div>
+        <h5>服务</h5>
+        <ul>
+          <li><a href="#/pricing">套餐价格</a></li>
+          <li><a href="#/flow">充值流程</a></li>
+          <li><a href="#/order">订单查询</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>支持</h5>
+        <ul>
+          <li><a href="#/faq">常见问题</a></li>
+          <li><a onclick="showToast('客服微信：starq‑ai（10:00-22:00）')">联系客服</a></li>
+          <li><a onclick="showToast('退款政策：充值失败全额原路退回')">退款政策</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>关于</h5>
+        <ul>
+          <li><a onclick="showToast('本网站为第三方代订阅服务，非 OpenAI 官方网站')">服务说明</a></li>
+          <li><a onclick="showToast('用户协议与隐私政策演示版本')">用户协议</a></li>
+          <li><a onclick="showToast('隐私政策演示版本')">隐私政策</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div>© 2026 星启AI · 第三方代订阅服务 · 非 OpenAI 官方网站</div>
+      <div>客服时间 10:00 - 22:00</div>
+    </div>
+  </div>
+</footer>
+<div class="toast" id="toast"></div>
+<script>
+// ===== Hash Router =====
+const routes = ['home','pricing','flow','order','faq'];
+function navigate(){
+  let hash = location.hash.replace('#/','') || 'home';
+  if(!routes.includes(hash)) hash = 'home';
+  document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+  document.getElementById('view-'+hash).classList.add('active');
+  document.querySelectorAll('.nav-link').forEach(a => {
+    a.classList.toggle('active', a.dataset.route === hash);
+  });
+  window.scrollTo({top:0,behavior:'instant'});
+}
+window.addEventListener('hashchange', navigate);
+// ===== Toast =====
+let toastTimer;
+function showToast(msg){
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(()=>t.classList.remove('show'), 2600);
+}
+// ===== Order query =====
+function queryOrder(){
+  const no = document.getElementById('orderNo').value.trim();
+  const em = document.getElementById('orderEmail').value.trim();
+  if(!no || !em){ showToast('请填写订单号和邮箱'); return; }
+  document.getElementById('orderResult').classList.add('show');
+}
+// ===== FAQ accordion =====
+document.querySelectorAll('.faq-q').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    const item = btn.parentElement;
+    const wasOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item').forEach(i=>i.classList.remove('open'));
+    if(!wasOpen) item.classList.add('open');
+  });
+});
+// init
+navigate();
+</script>
+</body>
+</html>
+<!-- （注：内容由AI生成） -->
