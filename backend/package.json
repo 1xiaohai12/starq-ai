@@ -1,0 +1,11 @@
+{
+ "type":"module",
+ "scripts":{"start":"node server.js"},
+ "dependencies":{
+  "express":"latest",
+  "cors":"latest",
+  "dotenv":"latest",
+  "axios":"latest",
+  "uuid":"latest"
+ }
+}
