@@ -1,0 +1,1 @@
+module.exports={apps:[{name:'xingqi-ai',script:'backend/server.js'}]};
