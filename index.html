@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>星启AI - AI订阅商城</title>
+<meta name="description" content="星启AI AI订阅服务商城">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<header>
+<div class="logo">⭐ 星启AI</div>
+<div class="nav">首页　产品　订单　客服</div>
+</header>
+
+<section class="banner">
+<h1>AI订阅服务商城</h1>
+<p>快速下单 · 订单查询 · 客服支持</p>
+<button onclick="showProduct('ChatGPT Plus')">立即购买</button>
+</section>
+
+<section class="products">
+<h2>热门套餐</h2>
+<div class="grid">
+<div class="item">
+<h3>ChatGPT Plus</h3>
+<p>个人智能助手方案</p>
+<b>¥180/月</b>
+<button onclick="showProduct('ChatGPT Plus')">购买</button>
+</div>
+<div class="item recommend">
+<span>热门</span>
+<h3>GPT Pro</h3>
+<p>专业用户高级方案</p>
+<b>¥880/月</b>
+<button onclick="showProduct('GPT Pro')">购买</button>
+</div>
+<div class="item">
+<h3>Codex</h3>
+<p>开发者代码助手</p>
+<b>¥350</b>
+<button onclick="showProduct('Codex')">购买</button>
+</div>
+</div>
+</section>
+
+<section class="process">
+<h2>下单流程</h2>
+<div class="steps">
+<div>1<br>选择套餐</div>
+<div>2<br>填写信息</div>
+<div>3<br>支付订单</div>
+<div>4<br>完成服务</div>
+</div>
+</section>
+
+<section>
+<h2>订单查询</h2>
+<div class="query">
+<input id="order" placeholder="订单号">
+<button onclick="query()">查询</button>
+<p id="msg"></p>
+</div>
+</section>
+
+<div id="modal">
+<div class="dialog">
+<h3 id="title"></h3>
+<input placeholder="邮箱">
+<input placeholder="联系方式">
+<button onclick="createOrder()">提交订单</button>
+<button onclick="hide()">关闭</button>
+</div>
+</div>
+
+<script src="js/app.js"></script>
+</body>
+</html>
